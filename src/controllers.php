@@ -13,6 +13,10 @@ $app->post('/', function () use ($app) {
 
     if (!$request || !isset($request['message']['text'])) {
         $response = new JsonResponse('', 400);
+    } elseif (strpos($request['message']['text'], '/y') !== 0) {
+        $response = new JsonResponse([
+            'ok' => true,
+        ]);
     } else {
         $text = ltrim($request['message']['text'], '/y ');
 
