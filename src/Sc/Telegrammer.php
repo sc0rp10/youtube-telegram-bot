@@ -25,7 +25,6 @@ class Telegrammer
     protected function sendRequest($method, $data = [])
     {
         $c = new Curl();
-        $c->setOpt('timeout', 15);
         $c->post(self::BASE_URL.$this->token.'/'.$method, $data);
     }
 }

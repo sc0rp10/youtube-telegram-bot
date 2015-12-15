@@ -2,8 +2,11 @@
 
 use Sc\Searcher;
 use Sc\Telegrammer;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+
+$app->get('/', function () use ($app) {
+    return new JsonResponse(['ok' => true]);
+});
 
 $app->post('/', function () use ($app) {
     $request = json_decode(file_get_contents('php://input'), true);
@@ -21,6 +24,10 @@ $app->post('/', function () use ($app) {
         /** @var Telegrammer $telegrammer */
         $telegrammer = $app['telegrammer'];
         $telegrammer->sendMessage($request['message']['chat']['id'], $link);
+
+        $response = new JsonResponse([
+            'ok' => true,
+        ]);
     }
 
     return $response;
