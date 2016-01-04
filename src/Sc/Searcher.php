@@ -35,7 +35,7 @@ class Searcher
             throw new \RuntimeException('Cannot parse results body');
         }
 
-        if (isset($data['items'][0])) {
+        if (isset($data['items'][0]['id']['videoId'])) {
             $id = $data['items'][0]['id']['videoId'];
         } else {
             $id = 'dQw4w9WgXcQ';
